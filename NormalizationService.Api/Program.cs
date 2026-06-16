@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NormalizationService.Api.Application;
 using NormalizationService.Api.Contracts;
 using NormalizationService.Api.Data;
 using NormalizationService.Api.Normalization;
@@ -18,6 +19,8 @@ builder.Services.AddDbContext<AccountingDbContext>(options =>
 
 builder.Services.AddSingleton<IAccountingFeedReader, JsonAccountingFeedReader>();
 builder.Services.AddSingleton<IAccountingNormalizer, AccountingNormalizer>();
+builder.Services.AddScoped<INormalizedAccountingEntryRepository, EfNormalizedAccountingEntryRepository>();
+builder.Services.AddScoped<INormalizedAccountingEntryQueryService, NormalizedAccountingEntryQueryService>();
 
 var app = builder.Build();
 
@@ -31,18 +34,13 @@ if (app.Environment.IsDevelopment())
 await DatabaseInitializer.InitializeAsync(app.Services);
 
 app.MapGet("/api/normalized-entries", async (
-        AccountingDbContext dbContext,
+        INormalizedAccountingEntryQueryService queryService,
         CancellationToken cancellationToken) =>
     {
-        var entries = await dbContext.NormalizedAccountingEntries
-            .AsNoTracking()
-            .OrderBy(entry => entry.OccurredAt)
-            .ThenBy(entry => entry.SourceSystem)
-            .ThenBy(entry => entry.ExternalId)
-            .Select(entry => NormalizedAccountingEntryResponse.FromEntity(entry))
-            .ToListAsync(cancellationToken);
+        var entries = await queryService.GetAllAsync(cancellationToken);
+        var response = entries.Select(NormalizedAccountingEntryResponse.FromEntity);
 
-        return Results.Ok(entries);
+        return Results.Ok(response);
     })
     .WithName("GetNormalizedAccountingEntries")
     .Produces<IReadOnlyCollection<NormalizedAccountingEntryResponse>>();

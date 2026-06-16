@@ -76,3 +76,11 @@ Then run:
 ```powershell
 dotnet run --project NormalizationService.Api
 ```
+
+## Tests
+
+Run the application tests with:
+
+```powershell
+dotnet test NormalizationService.slnx
+```
