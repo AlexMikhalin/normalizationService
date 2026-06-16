@@ -59,28 +59,3 @@ Accept: application/json
 ```
 
 On first startup the service creates the database schema with EF Core `EnsureCreated()`, reads `NormalizationService.Api/Data/Mock/accounting-feed.json`, normalizes the records, and seeds PostgreSQL.
-
-## Local Run Without Docker
-
-Start PostgreSQL yourself with these credentials:
-
-```text
-Database: normalization
-User: normalizer
-Password: normalizer_password
-Port: 5432
-```
-
-Then run:
-
-```powershell
-dotnet run --project NormalizationService.Api
-```
-
-## Tests
-
-Run the application tests with:
-
-```powershell
-dotnet test NormalizationService.slnx
-```
