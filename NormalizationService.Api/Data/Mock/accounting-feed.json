@@ -1,0 +1,126 @@
+{
+  "quickLedgerInvoices": [
+    {
+      "invoiceId": "QL-INV-1001",
+      "issuedAt": "2026-04-03T10:15:00Z",
+      "customerName": "Northwind Labs",
+      "currencyCode": "USD",
+      "subtotal": 1250.00,
+      "salesTax": 100.00,
+      "totalDue": 1350.00,
+      "revenueAccount": "4000",
+      "paymentState": "Paid",
+      "memo": "Consulting retainer"
+    },
+    {
+      "invoiceId": "QL-INV-1002",
+      "issuedAt": "2026-04-09T09:30:00Z",
+      "customerName": "Atlas Manufacturing",
+      "currencyCode": "USD",
+      "subtotal": 3200.00,
+      "salesTax": 256.00,
+      "totalDue": 3456.00,
+      "revenueAccount": "4010",
+      "paymentState": "Open",
+      "memo": "Implementation milestone"
+    }
+  ],
+  "cloudBooksJournalEntries": [
+    {
+      "entryNumber": "CB-JRN-8821",
+      "postedOn": "2026-04-05",
+      "ledgerAccount": "6100",
+      "debit": 425.55,
+      "credit": 0.00,
+      "counterparty": "Metro Office Supply",
+      "isoCurrency": "USD",
+      "narrative": "Office equipment",
+      "approved": true
+    },
+    {
+      "entryNumber": "CB-JRN-8822",
+      "postedOn": "2026-04-11",
+      "ledgerAccount": "7000",
+      "debit": 0.00,
+      "credit": 775.30,
+      "counterparty": "Internal Accrual",
+      "isoCurrency": "USD",
+      "narrative": "Deferred revenue recognition",
+      "approved": false
+    }
+  ],
+  "payFlowSettlements": [
+    {
+      "settlementReference": "PF-STL-5090",
+      "completedAt": "2026-04-06T14:34:00Z",
+      "merchant": "Bright Market",
+      "currency": "EUR",
+      "gross": 980.20,
+      "fee": 29.41,
+      "net": 950.79,
+      "taxWithheld": 0.00,
+      "clearingAccount": "1010",
+      "statusCode": "Settled"
+    },
+    {
+      "settlementReference": "PF-STL-5091",
+      "completedAt": "2026-04-12T16:45:00Z",
+      "merchant": "Studio Finch",
+      "currency": "EUR",
+      "gross": 430.00,
+      "fee": 12.90,
+      "net": 417.10,
+      "taxWithheld": 8.60,
+      "clearingAccount": "1010",
+      "statusCode": "Settled"
+    }
+  ],
+  "taxDeskExpenses": [
+    {
+      "receiptCode": "TD-RCPT-743",
+      "purchaseDate": "2026-04-07",
+      "vendorLegalName": "Cloud Hosting Ltd",
+      "amountIncludingVat": 240.00,
+      "vatAmount": 40.00,
+      "currencyIso": "GBP",
+      "expenseCategoryCode": "6400",
+      "deductible": true,
+      "notes": "Monthly infrastructure"
+    },
+    {
+      "receiptCode": "TD-RCPT-744",
+      "purchaseDate": "2026-04-13",
+      "vendorLegalName": "Trainline Business",
+      "amountIncludingVat": 118.80,
+      "vatAmount": 19.80,
+      "currencyIso": "GBP",
+      "expenseCategoryCode": "6500",
+      "deductible": true,
+      "notes": "Client visit travel"
+    }
+  ],
+  "bankBridgeStatementLines": [
+    {
+      "bankTxnId": "BB-20260408-0007",
+      "bookingDate": "2026-04-08T08:00:00Z",
+      "accountIbanLast4": "4021",
+      "descriptionLine": "Customer payment ACME Studio",
+      "amount": 620.00,
+      "direction": "Credit",
+      "currencyAlpha": "USD",
+      "counterpartyDisplay": "ACME Studio",
+      "matchedDocument": "QL-INV-1001"
+    },
+    {
+      "bankTxnId": "BB-20260414-0011",
+      "bookingDate": "2026-04-14T08:00:00Z",
+      "accountIbanLast4": "4021",
+      "descriptionLine": "Bank service charge",
+      "amount": 18.00,
+      "direction": "Debit",
+      "currencyAlpha": "USD",
+      "counterpartyDisplay": "First City Bank",
+      "matchedDocument": ""
+    }
+  ]
+}
